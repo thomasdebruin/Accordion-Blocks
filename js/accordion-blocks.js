@@ -236,15 +236,17 @@ class AccordionItem extends HTMLElement {
 	 * @param {boolean} open
 	 */
 	setAttributes(open = true) {
+		let state = '';
 		if (open) {
 			this.classList.add('is-read', 'is-open');
 			this.isRead = true;
 		} else {
 			this.classList.remove('is-open');
+			state = 'hidden';
 		}
 
 		this.controller.setAttribute('aria-expanded', this.isOpen);
-		open ? this.content.removeAttribute('hidden') : this.content.setAttribute('hidden', !!window.chrome ? 'until-found' : '');
+		open ? this.content.removeAttribute('hidden') : this.content.setAttribute('hidden', !!window.chrome ? 'until-found' : state);
 		this.content.style = null;
 	}
 
